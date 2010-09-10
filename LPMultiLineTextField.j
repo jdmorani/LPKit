@@ -198,11 +198,14 @@ var CPTextFieldInputOwner = nil;
     [[[self window] platformWindow] _propagateCurrentDOMEvent:YES];
 }
 
-- (BOOL)performKeyEquivalent:(CPEvent)anEvent
-{
-    [[[self window] platformWindow] _propagateCurrentDOMEvent:YES];
-    return YES;
-}
+// This piece of code does seem to cause issues when tabbing to the textarea control as it prevents some keystrokes
+// to be registered and the focus does not work at all.
+// I could not find a good reason to keep performKeyEquivalent since it does not seem to do anything special.
+// - (BOOL)performKeyEquivalent:(CPEvent)anEvent
+// {
+//     [[[self window] platformWindow] _propagateCurrentDOMEvent:YES];
+//     return YES;
+// }
 
 - (BOOL)becomeFirstResponder
 {
